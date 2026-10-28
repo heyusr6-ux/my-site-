@@ -2,7 +2,7 @@ import './globals.css';
 import type { ReactNode } from 'react';
 
 export const metadata = {
-  title: 'Breach Log',
+  title: 'Kyoraku Hub',
   description: 'Cybersecurity learning journal',
 };
 

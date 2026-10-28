@@ -23,7 +23,7 @@ export function clientInfo(req: Request): ClientInfo {
   };
 }
 
-export async function logAccess(info: ClientInfo, path: string, result: 'success' | 'failed' | 'denied' | 'blocked' | 'locked') {
+export async function logAccess(info: ClientInfo, path: string, result: 'success' | 'failed' | 'denied' | 'blocked' | 'locked' | 'attack') {
   await sql`
     INSERT INTO access_log (ip, country, city, path, user_agent, result)
     VALUES (${info.ip}, ${info.country}, ${info.city}, ${path}, ${info.ua}, ${result})`;
@@ -38,6 +38,6 @@ export async function isBlocked(ip: string): Promise<boolean> {
 export async function recentFailures(ip: string): Promise<number> {
   const rows = (await sql`
     SELECT count(*)::int AS n FROM access_log
-    WHERE ip = ${ip} AND result = 'failed' AND created_at > now() - interval '15 minutes'`) as { n: number }[];
+    WHERE ip = ${ip} AND result IN ('failed', 'attack') AND created_at > now() - interval '15 minutes'`) as { n: number }[];
   return rows[0]?.n ?? 0;
 }

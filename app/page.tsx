@@ -90,7 +90,7 @@ export default async function Home() {
   return (
     <div className="wrap">
       <header className="top">
-        <Link href="/"><img src="/logo.jpg" alt={s.logo_text || 'Breach Log'} className="logo" /></Link>
+        <Link href="/"><img src="/logo.jpg" alt={s.logo_text || 'Kyoraku Hub'} className="logo" /></Link>
         <nav aria-label="Main">
           <a href="#posts">Posts</a>
           <a href="#skills">Skills</a>
@@ -121,7 +121,7 @@ export default async function Home() {
       {cfg.order.filter((k) => !cfg.hidden.includes(k)).map((k) => blocks[k] || null)}
 
       <footer>
-        <span>© Breach Log</span>
+        <span>© Kyoraku Hub</span>
         <span>{s.footer_text || 'Learning cybersecurity in public.'}</span>
       </footer>
     </div>

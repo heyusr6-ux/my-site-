@@ -15,7 +15,7 @@ export default async function PostPage({ params }: { params: { slug: string } })
   return (
     <div className="wrap narrow">
       <header className="top">
-        <Link href="/"><img src="/logo.jpg" alt="Breach Log" className="logo" /></Link>
+        <Link href="/"><img src="/logo.jpg" alt="Kyoraku Hub" className="logo" /></Link>
         <Link href="/">Back to posts</Link>
       </header>
       <article className="article" style={{ paddingTop: 48 }}>
@@ -43,7 +43,7 @@ export default async function PostPage({ params }: { params: { slug: string } })
       </article>
       <footer>
         <Link href="/">← All posts</Link>
-        <span>© Breach Log</span>
+        <span>© Kyoraku Hub</span>
       </footer>
     </div>
   );

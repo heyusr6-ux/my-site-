@@ -102,7 +102,7 @@ export default function AdminClient({ posts, settings, security }: { posts: Post
   return (
     <div className="admin">
       <aside className="side" aria-label="Admin navigation">
-        <a href="#posts" style={{ fontFamily: 'Fraunces, Georgia, serif', fontWeight: 700, fontSize: 20, color: 'var(--fg)', padding: '0 10px 20px' }}>Breach Log</a>
+        <a href="#posts" style={{ fontFamily: 'Fraunces, Georgia, serif', fontWeight: 700, fontSize: 20, color: 'var(--fg)', padding: '0 10px 20px' }}>Kyoraku Hub</a>
         <a href="#posts">Posts</a>
         <a href="#settings">Site settings</a>
         <a href="/admin/security">Security log</a>

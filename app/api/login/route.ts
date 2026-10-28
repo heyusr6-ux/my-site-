@@ -22,6 +22,11 @@ export async function POST(req: Request) {
   }
 
   const { username, password } = (await req.json().catch(() => ({}))) as { username?: string; password?: string };
+  const input = `${username || ''} ${password || ''}`;
+  if (/(['";]|--|\/\*|\b(or|and)\b\s+[\w'"]+\s*=|\bunion\b|\bselect\b|\bdrop\b)/i.test(input)) {
+    await logAccess(info, "/api/login", "attack").catch(() => {});
+    return NextResponse.json({ error: "You are trying to bypass the login page security. Kyoraku says: nice try." }, { status: 400 });
+  }
   const expectedUser = process.env.ADMIN_USERNAME || '';
   const expectedPass = process.env.ADMIN_PASSWORD || '';
   const valid =
@@ -41,7 +46,6 @@ export async function POST(req: Request) {
     secure: process.env.NODE_ENV === 'production',
     sameSite: 'strict',
     path: '/',
-    maxAge: 60 * 60 * 48,
   });
   return res;
 }

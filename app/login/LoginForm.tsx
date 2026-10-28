@@ -25,13 +25,14 @@ export default function LoginForm() {
       router.push('/admin');
       router.refresh();
     } else {
-      setError('Incorrect username or password. Please try again.');
+      const j = await res.json().catch(() => ({}));
+      setError(j.error || 'Incorrect username or password. Please try again.');
     }
   }
 
   return (
     <form className="panel" onSubmit={submit} style={{ width: '100%', maxWidth: 400, padding: '36px 32px' }} aria-labelledby="login-title">
-      <h1 id="login-title" style={{ fontSize: 26 }}>Breach Log</h1>
+      <h1 id="login-title" style={{ fontSize: 26 }}>Kyoraku Hub</h1>
       <p className="tag" style={{ marginBottom: 20 }}>Admin login</p>
       <label className="field" htmlFor="l-user">Username</label>
       <input id="l-user" type="text" autoComplete="username" value={username} onChange={(e) => setUsername(e.target.value)} required />
