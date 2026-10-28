@@ -3,8 +3,6 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import type { Post } from '@/lib/content';
-import SecurityPanel from "@/components/SecurityPanel";
-import type { BlockedRow, LogRow } from "@/lib/security";
 
 const SETTING_FIELDS: { key: string; label: string; multiline?: boolean }[] = [
   { key: 'logo_text', label: 'Logo text' },
@@ -20,7 +18,7 @@ const SETTING_FIELDS: { key: string; label: string; multiline?: boolean }[] = [
 
 const EMPTY = { id: 0, title: "", category: "CTF write-up", cover_url: "", video_url: "", body: "", status: 'draft' as 'draft' | 'published', featured: false };
 
-export default function AdminClient({ posts, settings, security }: { posts: Post[]; settings: Record<string, string>; security: { stats: { visits: number; failed: number }; blocked: BlockedRow[]; logs: LogRow[] } }) {
+export default function AdminClient({ posts, settings, failed24h }: { posts: Post[]; settings: Record<string, string>; failed24h: number }) {
   const router = useRouter();
   const [form, setForm] = useState({ ...EMPTY });
   const [editing, setEditing] = useState(false);
@@ -197,8 +195,6 @@ export default function AdminClient({ posts, settings, security }: { posts: Post
             </div>
           </div>
         </section>
-
-        <SecurityPanel stats={security.stats} blocked={security.blocked} logs={security.logs} />
 
         <section id="settings" aria-labelledby="settings-title">
           <h2 id="settings-title" style={{ fontSize: 22 }}>Site settings</h2>
