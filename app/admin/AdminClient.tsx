@@ -106,6 +106,7 @@ export default function AdminClient({ posts, settings, security }: { posts: Post
         <a href="#posts">Posts</a>
         <a href="#settings">Site settings</a>
         <a href="/admin/security">Security log</a>
+        <a href="/admin/content">Skills and content</a>
         <span style={{ flex: 1 }} />
         <a href="/">View site</a>
         <button type="button" className="btn" onClick={logout} style={{ marginTop: 12 }}>Log out</button>
@@ -117,6 +118,12 @@ export default function AdminClient({ posts, settings, security }: { posts: Post
           <span className="pill ok">Admin only</span>
         </div>
 
+        <div className="two" style={{ gridTemplateColumns: "repeat(4,minmax(0,1fr))" }}>
+          <div className="tile"><b>{posts.length}</b><span>Total posts</span></div>
+          <div className="tile"><b>{posts.filter((p) => p.status === "published").length}</b><span>Published</span></div>
+          <div className="tile"><b>{posts.filter((p) => p.featured).length}</b><span>Featured</span></div>
+          <div className="tile"><b>{failed24h}</b><span>Failed logins (24h)</span></div>
+        </div>
         {msg && <p className="ok-msg" role="status">{msg}</p>}
         {err && <p className="err" role="alert">{err}</p>}
 

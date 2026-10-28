@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { sql } from '@/lib/db';
 
-const ALLOWED = ['logo_text', 'hero_title', 'hero_sub', 'about', 'footer_text', 'github_url', 'linkedin_url', 'email'];
+const ALLOWED = ['logo_text', 'hero_title', 'hero_sub', 'about', 'footer_text', 'github_url', 'linkedin_url', 'email', 'sections', 'progress_1_name', 'progress_1_pct', 'progress_2_name', 'progress_2_pct'];
 
 export async function PUT(req: Request) {
   const data = (await req.json()) as Record<string, unknown>;

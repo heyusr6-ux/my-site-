@@ -11,7 +11,7 @@ async function hex(buf: ArrayBuffer) {
 }
 
 export async function makeToken() {
-  const exp = Date.now() + 12 * 60 * 60 * 1000;
+  const exp = Date.now() + 48 * 60 * 60 * 1000;
   const payload = `admin.${exp}`;
   const sig = await hex(await crypto.subtle.sign('HMAC', await key(), enc.encode(payload)));
   return `${payload}.${sig}`;

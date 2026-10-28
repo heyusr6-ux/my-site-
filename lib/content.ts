@@ -37,3 +37,28 @@ export async function getAllPosts(): Promise<Post[]> {
     SELECT id, title, slug, category, body, status, featured, cover_url, video_url, created_at
     FROM posts ORDER BY created_at DESC`) as unknown as Post[];
 }
+
+export type Skill = { id: number; name: string; level: string; pct: number };
+export type Resource = { id: number; title: string; type: string; url: string; note: string | null };
+
+export const DEFAULT_ORDER = ['posts', 'skills', 'progress', 'resources', 'about', 'contact'];
+
+export async function getSkills(): Promise<Skill[]> {
+  return (await sql`SELECT id, name, level, pct FROM skills ORDER BY sort, id`) as unknown as Skill[];
+}
+
+export async function getResources(): Promise<Resource[]> {
+  return (await sql`SELECT id, title, type, url, note FROM resources ORDER BY sort, id`) as unknown as Resource[];
+}
+
+export async function getSectionConfig(): Promise<{ order: string[]; hidden: string[] }> {
+  const s = await getSettings();
+  try {
+    const parsed = JSON.parse(s.sections || '{}');
+    const order = Array.isArray(parsed.order) ? parsed.order : DEFAULT_ORDER;
+    const hidden = Array.isArray(parsed.hidden) ? parsed.hidden : [];
+    return { order, hidden };
+  } catch {
+    return { order: DEFAULT_ORDER, hidden: [] };
+  }
+}
