@@ -1,4 +1,4 @@
-<Link href="/"><img src="/logo.jpg" alt="Breach Log" className="logo" /></Link>import Link from 'next/link';
+import Link from 'next/link';
 import { getPublishedPosts, getSettings, type Post } from '@/lib/content';
 import ThemeToggle from '@/components/ThemeToggle';
 import ContactForm from "@/components/ContactForm";
@@ -19,10 +19,7 @@ export default async function Home() {
   return (
     <div className="wrap">
       <header className="top">
-        <Link href="/" className="brand" style={{ color: 'var(--fg)' }}>
-          {s.logo_text || 'Breach Log'}
-          <small>cybersecurity journal</small>
-        </Link>
+        <Link href="/"><img src="/logo.jpg" alt="Breach Log" className="logo" /></Link>
         <nav aria-label="Main">
           <a href="#posts">Posts</a>
           <a href="#about">About</a>
