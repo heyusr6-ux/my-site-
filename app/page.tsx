@@ -1,6 +1,7 @@
-import Link from 'next/link';
+<Link href="/"><img src="/logo.jpg" alt="Breach Log" className="logo" /></Link>import Link from 'next/link';
 import { getPublishedPosts, getSettings, type Post } from '@/lib/content';
 import ThemeToggle from '@/components/ThemeToggle';
+import ContactForm from "@/components/ContactForm";
 
 export const dynamic = 'force-dynamic';
 
@@ -73,11 +74,11 @@ export default async function Home() {
 
       <section className="block" id="contact">
         <h2>Contact</h2>
-        <div className="btns">
+        <div className="btns" style={{ marginBottom: 24 }}>
           {s.github_url && <a className="btn solid" href={s.github_url} target="_blank" rel="noreferrer">GitHub</a>}
           {s.linkedin_url && <a className="btn" href={s.linkedin_url} target="_blank" rel="noreferrer">LinkedIn</a>}
-          {s.email && <a className="btn" href={`mailto:${s.email}`}>Email</a>}
         </div>
+        <ContactForm email={s.email || "thenoobuser04@gmail.com"} />
       </section>
 
       <footer>

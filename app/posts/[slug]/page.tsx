@@ -15,7 +15,7 @@ export default async function PostPage({ params }: { params: { slug: string } })
   return (
     <div className="wrap narrow">
       <header className="top">
-        <Link href="/" className="brand" style={{ color: 'var(--fg)' }}>Breach Log</Link>
+        <Link href="/"><img src="/logo.jpg" alt="Breach Log" className="logo" /></Link>
         <Link href="/">Back to posts</Link>
       </header>
       <article className="article" style={{ paddingTop: 48 }}>
