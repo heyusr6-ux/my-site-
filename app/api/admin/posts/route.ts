@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { sql } from '@/lib/db';
 import { slugify } from '@/lib/slug';
 
-type Input = { title?: string; category?: string; body?: string; status?: string; featured?: boolean };
+type Input = { title?: string; category?: string; body?: string; status?: string; featured?: boolean; cover_url?: string; video_url?: string };
 
 export async function POST(req: Request) {
   const data = (await req.json()) as Input;
@@ -10,11 +10,13 @@ export async function POST(req: Request) {
   if (!title) return NextResponse.json({ error: 'Title is required' }, { status: 400 });
   const status = data.status === 'published' ? 'published' : 'draft';
   const featured = Boolean(data.featured);
+  const cover = data.cover_url?.trim() || null;
+  const video = data.video_url?.trim() || null;
 
   if (featured) await sql`UPDATE posts SET featured = false WHERE featured = true`;
   const rows = (await sql`
-    INSERT INTO posts (title, slug, category, body, status, featured)
-    VALUES (${title}, ${slugify(title)}, ${data.category || null}, ${data.body || ''}, ${status}, ${featured})
+    INSERT INTO posts (title, slug, category, body, status, featured, cover_url, video_url)
+    VALUES (${title}, ${slugify(title)}, ${data.category || null}, ${data.body || ""}, ${status}, ${featured}, ${cover}, ${video})
     RETURNING id`) as { id: number }[];
   return NextResponse.json({ id: rows[0].id });
 }

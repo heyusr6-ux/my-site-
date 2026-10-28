@@ -15,7 +15,7 @@ const SETTING_FIELDS: { key: string; label: string; multiline?: boolean }[] = [
   { key: 'email', label: 'Email' },
 ];
 
-const EMPTY = { id: 0, title: '', category: 'CTF write-up', body: '', status: 'draft' as 'draft' | 'published', featured: false };
+const EMPTY = { id: 0, title: "", category: "CTF write-up", cover_url: "", video_url: "", body: "", status: 'draft' as 'draft' | 'published', featured: false };
 
 export default function AdminClient({ posts, settings }: { posts: Post[]; settings: Record<string, string> }) {
   const router = useRouter();
@@ -29,7 +29,7 @@ export default function AdminClient({ posts, settings }: { posts: Post[]; settin
 
   function edit(p: Post) {
     setEditing(true);
-    setForm({ id: p.id, title: p.title, category: p.category || '', body: p.body || '', status: p.status, featured: p.featured });
+    setForm({ id: p.id, title: p.title, category: p.category || "", cover_url: p.cover_url || "", video_url: p.video_url || "", body: p.body || "", status: p.status, featured: p.featured });
     setMsg('');
     setErr('');
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -44,7 +44,7 @@ export default function AdminClient({ posts, settings }: { posts: Post[]; settin
     setBusy(true);
     setErr('');
     setMsg('');
-    const payload = { title: form.title, category: form.category, body: form.body, status, featured: form.featured };
+    const payload = { title: form.title, category: form.category, cover_url: form.cover_url, video_url: form.video_url, body: form.body, status, featured: form.featured };
     const res = await fetch(editing ? `/api/admin/posts/${form.id}` : '/api/admin/posts', {
       method: editing ? 'PUT' : 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -164,6 +164,10 @@ export default function AdminClient({ posts, settings }: { posts: Post[]; settin
                   <option>Learning log</option>
                   <option>Character</option>
                 </select>
+                <label className="field" htmlFor="p-cover">Cover image URL (photo link)</label>
+                <input id="p-cover" type="url" placeholder="https://..." value={form.cover_url} onChange={(e) => setForm({ ...form, cover_url: e.target.value })} />
+                <label className="field" htmlFor="p-video">Video link (YouTube or Vimeo)</label>
+                <input id="p-video" type="url" placeholder="https://www.youtube.com/watch?v=..." value={form.video_url} onChange={(e) => setForm({ ...form, video_url: e.target.value })} />
                 <label className="field" htmlFor="p-body">Content (blank line = new paragraph)</label>
                 <textarea id="p-body" value={form.body} onChange={(e) => setForm({ ...form, body: e.target.value })} />
               </div>
@@ -172,7 +176,7 @@ export default function AdminClient({ posts, settings }: { posts: Post[]; settin
                   <input type="checkbox" checked={form.featured} onChange={(e) => setForm({ ...form, featured: e.target.checked })} />
                   Featured on home page (top)
                 </label>
-                <p className="meta" style={{ marginTop: 16 }}>Photo ar video upload ekhono add hoyni. Video er jonno YouTube link dile chalbe.</p>
+                <p className="meta" style={{ marginTop: 16 }}>Photo ar video-r jonno link dao. Upload ekhono nei.</p>
               </div>
             </div>
             <div className="row">
