@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Breach Log Home</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+:root{--bg:#05080C;--panel:#0D141C;--line:#1A2836;--fg:#EAF6FD;--muted:#8DA6BA;--accent:#8FD9FF;color-scheme:dark}
+@media (prefers-color-scheme: light){:root:not([data-theme='dark']){--bg:#F3F8FB;--panel:#FFFFFF;--line:#D3E2EC;--fg:#0B1620;--muted:#4D6374;--accent:#1B74A8;color-scheme:light}}
+:root[data-theme='light']{--bg:#F3F8FB;--panel:#FFFFFF;--line:#D3E2EC;--fg:#0B1620;--muted:#4D6374;--accent:#1B74A8;color-scheme:light}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:"IBM Plex Sans",system-ui,sans-serif;font-size:17px;line-height:1.6}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:1120px;margin:0 auto;padding:0 max(24px,env(safe-area-inset-left,0px)) 0 max(24px,env(safe-area-inset-right,0px))}
+.top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px;padding:28px 0;border-bottom:1px solid var(--line)}
+.brand{font-family:"Fraunces",Georgia,serif;font-size:26px;font-weight:700}
+.brand span{display:block;font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+nav{display:flex;flex-wrap:wrap;gap:20px;align-items:center;font-weight:500}
+nav a{color:var(--fg)}
+.hero{padding:96px 0 72px;display:grid;grid-template-columns:minmax(0,1fr);gap:24px;max-width:780px}
+.kicker{font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--accent);letter-spacing:.1em;text-transform:uppercase;margin:0}
+h1{font-family:"Fraunces",Georgia,serif;font-weight:700;font-size:clamp(40px,6vw,64px);line-height:1.08;margin:0;text-wrap:balance}
+.lead{margin:0;color:var(--muted);font-size:19px;max-width:60ch}
+.btns{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-block;padding:12px 20px;border-radius:6px;font-weight:600;border:1px solid var(--accent)}
+.btn.solid{background:var(--accent);color:var(--bg)}
+.btn.ghost{color:var(--accent)}
+h2{font-family:"Fraunces",Georgia,serif;font-size:32px;margin:0 0 24px;font-weight:700}
+section{padding:56px 0;border-top:1px solid var(--line)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:24px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.tag{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--accent);text-transform:uppercase;letter-spacing:.06em}
+.card h3{font-family:"Fraunces",Georgia,serif;font-size:22px;margin:0;line-height:1.25;text-wrap:balance}
+.card p{margin:0;color:var(--muted);font-size:15px}
+.meta{margin-top:auto;font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--muted)}
+.note{font-size:13px;color:var(--muted);margin:0 0 20px;font-family:"IBM Plex Mono",monospace}
+.about{display:grid;grid-template-columns:minmax(0,1fr);gap:16px;max-width:680px}
+.about p{margin:0;color:var(--muted)}
+footer{padding:32px 0 48px;border-top:1px solid var(--line);color:var(--muted);font-size:14px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+.toolbar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;margin:0 0 24px}
+.search{flex:1 1 240px;background:var(--panel);color:var(--fg);border:1px solid var(--line);border-radius:6px;padding:10px 14px;font:inherit;min-width:0}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font:inherit;font-size:14px;padding:7px 14px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--muted);cursor:pointer}
+.chip.on{border-color:var(--accent);color:var(--accent)}
+.tagrow{display:flex;flex-wrap:wrap;gap:10px}
+.tagrow span{font-family:"IBM Plex Mono",monospace;font-size:13px;border:1px solid var(--line);border-radius:6px;padding:8px 12px;background:var(--panel)}
+.prog{margin-bottom:18px}
+.prog-head{display:flex;justify-content:space-between;font-size:15px;margin-bottom:8px}
+.bar{height:8px;background:var(--line);border-radius:999px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--accent)}
+.card.link{color:inherit}
+.card.link:hover{border-color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+</style>
+</helmet>
+<div class="wrap">
+  <header class="top">
+    <div class="brand">Breach Log<span>cybersecurity journal</span></div>
+    <nav aria-label="Main"><a href="#posts">Posts</a><a href="#skills">Skills</a><a href="#about">About</a><a href="#contact">Contact</a><button class="chip" type="button" aria-label="Toggle theme">Theme</button></nav>
+  </header>
+
+  <div class="hero">
+    <p class="kicker">Learning in public</p>
+    <h1>Notes and labs from my cybersecurity journey.</h1>
+    <p class="lead">CTF write-ups, tool notes, certification progress, and everything I learn along the way, in one place.</p>
+    <div class="btns">
+      <a class="btn solid" href="#posts">Read posts</a>
+      <a class="btn ghost" href="#about">About me</a>
+    </div>
+  </div>
+
+  <section id="posts">
+    <p class="note">Example cards. These will be replaced from the admin panel.</p>
+    <h2>Latest posts</h2>
+    <div class="toolbar">
+      <input class="search" type="search" aria-label="Search posts" placeholder="Search posts...">
+      <div class="chips" role="group" aria-label="Category">
+        <button class="chip on" type="button">All</button><button class="chip" type="button">CTF write-up</button><button class="chip" type="button">Tool notes</button><button class="chip" type="button">Learning log</button>
+      </div>
+    </div>
+    <div class="grid">
+      <article class="card">
+        <span class="tag">CTF write-up</span>
+        <h3>How I solved a web challenge</h3>
+        <p>From recon to exploit, what mistakes I made and what I learned.</p>
+        <a class="meta" href="#">[date] · [read time] · Read post</a>
+      </article>
+      <article class="card">
+        <span class="tag">Tool notes</span>
+        <h3>My first network scan with Nmap</h3>
+        <p>A simple guide to commands, flags, and reading the output.</p>
+        <a class="meta" href="#">[date] · [read time] · Read post</a>
+      </article>
+      <article class="card">
+        <span class="tag">Learning log</span>
+        <h3>My progress toward the certification</h3>
+        <p>What I studied, what was hard, and the plan going forward.</p>
+        <a class="meta" href="#">[date] · [read time] · Read post</a>
+      </article>
+    </div>
+  </section>
+
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="tagrow"><span>Linux</span><span>Nmap</span><span>Burp Suite</span><span>Wireshark</span><span>Python</span><span>Networking</span><span>OWASP Top 10</span></div>
+  </section>
+
+  <section id="progress">
+    <h2>Certification progress</h2>
+    <div class="prog"><div class="prog-head"><span>[Certification name]</span><span>[%]</span></div><div class="bar"><i style="width:40%"></i></div></div>
+    <div class="prog"><div class="prog-head"><span>[Currently studying]</span><span>[%]</span></div><div class="bar"><i style="width:65%"></i></div></div>
+  </section>
+
+  <section id="resources">
+    <h2>Resources</h2>
+    <div class="grid">
+      <a class="card link" href="#"><span class="tag">Book</span><h3>[Book title]</h3><p>[Why I recommend it]</p></a>
+      <a class="card link" href="#"><span class="tag">Course</span><h3>[Course name]</h3><p>[Why I recommend it]</p></a>
+      <a class="card link" href="#"><span class="tag">Lab</span><h3>[Lab or site name]</h3><p>[Why I recommend it]</p></a>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <div class="btns"><a class="btn solid" href="#">GitHub</a><a class="btn ghost" href="#">LinkedIn</a><a class="btn ghost" href="#">Email</a></div>
+  </section>
+
+  <section id="about">
+    <h2>About</h2>
+    <div class="about">
+      <p>I am learning cybersecurity, and this blog records my journey. [Your short bio goes here.]</p>
+      <p>Focus: [web security, networking, CTF, and anything else you work on].</p>
+    </div>
+  </section>
+
+  <footer>
+    <span>© Breach Log</span>
+    <span>Learning cybersecurity in public.</span>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":2600}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

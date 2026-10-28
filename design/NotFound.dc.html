@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Page Not Found</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+:root{--bg:#05080C;--panel:#0D141C;--line:#1A2836;--fg:#EAF6FD;--muted:#8DA6BA;--accent:#8FD9FF;color-scheme:dark}
+@media (prefers-color-scheme: light){:root:not([data-theme='dark']){--bg:#F3F8FB;--panel:#FFFFFF;--line:#D3E2EC;--fg:#0B1620;--muted:#4D6374;--accent:#1B74A8;color-scheme:light}}
+:root[data-theme='light']{--bg:#F3F8FB;--panel:#FFFFFF;--line:#D3E2EC;--fg:#0B1620;--muted:#4D6374;--accent:#1B74A8;color-scheme:light}
+body{margin:0;min-height:100%;background:var(--bg);color:var(--fg);font-family:"IBM Plex Sans",system-ui,sans-serif;font-size:17px;line-height:1.6}
+a{color:var(--accent);text-decoration:none}
+.page{min-height:800px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:16px;padding:40px max(24px,env(safe-area-inset-left,0px)) 40px max(24px,env(safe-area-inset-right,0px));box-sizing:border-box}
+.code{font-family:"IBM Plex Mono",monospace;font-size:14px;color:var(--accent);letter-spacing:.1em;text-transform:uppercase;margin:0}
+h1{font-family:"Fraunces",Georgia,serif;font-size:clamp(40px,6vw,64px);line-height:1.1;margin:0;font-weight:700;text-wrap:balance}
+p{margin:0;color:var(--muted);max-width:46ch}
+.btns{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:12px}
+.btn{display:inline-block;padding:12px 20px;border-radius:6px;font-weight:600;border:1px solid var(--accent);color:var(--accent)}
+.btn.solid{background:var(--accent);color:var(--bg)}
+.btn:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+</style>
+</helmet>
+<main class="page">
+  <p class="code">Error 404</p>
+  <h1>This page is not here.</h1>
+  <p>The link may be broken, or the post may have been moved. Try the home page or search for it.</p>
+  <div class="btns">
+    <a class="btn solid" href="#">Go to home</a>
+    <a class="btn" href="#">All posts</a>
+  </div>
+</main>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":800}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

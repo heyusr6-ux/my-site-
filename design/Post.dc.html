@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Breach Log Post</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+:root{--bg:#05080C;--panel:#0D141C;--line:#1A2836;--fg:#EAF6FD;--muted:#8DA6BA;--accent:#8FD9FF;color-scheme:dark}
+@media (prefers-color-scheme: light){:root:not([data-theme='dark']){--bg:#F3F8FB;--panel:#FFFFFF;--line:#D3E2EC;--fg:#0B1620;--muted:#4D6374;--accent:#1B74A8;color-scheme:light}}
+:root[data-theme='light']{--bg:#F3F8FB;--panel:#FFFFFF;--line:#D3E2EC;--fg:#0B1620;--muted:#4D6374;--accent:#1B74A8;color-scheme:light}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:"IBM Plex Sans",system-ui,sans-serif;font-size:17px;line-height:1.7}
+a{color:var(--accent);text-decoration:none}
+.wrap{max-width:740px;margin:0 auto;padding:0 max(24px,env(safe-area-inset-left,0px)) 0 max(24px,env(safe-area-inset-right,0px))}
+.top{display:flex;justify-content:space-between;align-items:center;padding:28px 0;border-bottom:1px solid var(--line);gap:12px;flex-wrap:wrap}
+.brand{font-family:"Fraunces",Georgia,serif;font-size:22px;font-weight:700;color:var(--fg)}
+.crumb{font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--muted);padding:40px 0 0}
+.tag{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--accent);text-transform:uppercase;letter-spacing:.06em;margin-top:24px;display:block}
+h1{font-family:"Fraunces",Georgia,serif;font-size:clamp(34px,5vw,50px);line-height:1.1;margin:12px 0 16px;font-weight:700;text-wrap:balance}
+.meta{font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--muted)}
+.hero-img{margin:32px 0;border:1px dashed var(--line);border-radius:10px;height:240px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:14px;max-width:100%}
+article p{margin:0 0 20px}
+article h2{font-family:"Fraunces",Georgia,serif;font-size:26px;margin:40px 0 12px}
+pre{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:18px;overflow-x:auto;font-family:"IBM Plex Mono",monospace;font-size:14px;color:var(--accent);margin:0 0 24px}
+.pager{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:48px 0;padding-top:24px;border-top:1px solid var(--line)}
+.pager a{border:1px solid var(--line);border-radius:10px;padding:18px;color:var(--fg);background:var(--panel)}
+.pager small{display:block;color:var(--muted);font-family:"IBM Plex Mono",monospace;font-size:12px;margin-bottom:6px}
+.video{aspect-ratio:16/9;max-width:100%;border:1px dashed var(--line);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:14px;margin:0 0 32px}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:0 0 32px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+</style>
+</helmet>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="#">Breach Log</a>
+    <a href="#">Back to posts</a>
+  </header>
+  <p class="crumb">Home / CTF write-up</p>
+  <span class="tag">CTF write-up</span>
+  <h1>How I solved a web challenge</h1>
+  <p class="meta">[date] · [read time] · Example post</p>
+  <div class="hero-img">Post cover image (upload from admin)</div>
+  <div class="video" role="region" aria-label="Post video">Video: YouTube or Vimeo embed here</div>
+  <div class="gallery">
+    <div class="hero-img" style="margin:0;height:160px">Photo 1</div>
+    <div class="hero-img" style="margin:0;height:160px">Photo 2</div>
+  </div>
+  <article>
+    <p>Introduction to the post. What the challenge was, how I started, and what the first clue was.</p>
+    <h2>Recon</h2>
+    <p>The recon steps I took, and which tools I used.</p>
+    <pre>nmap -sV -p- target.local</pre>
+    <h2>Exploit</h2>
+    <p>The exploit steps, and why they worked.</p>
+    <h2>Lessons</h2>
+    <p>The mistakes I made, and what I learned from them.</p>
+  </article>
+  <nav class="pager" aria-label="Post navigation">
+    <a href="#"><small>Previous</small>My first network scan with Nmap</a>
+    <a href="#"><small>Next</small>Certification progress, week 3</a>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":1200}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

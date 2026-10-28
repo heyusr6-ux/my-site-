@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Breach Log Login</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+:root{--bg:#05080C;--panel:#0D141C;--line:#1A2836;--fg:#EAF6FD;--muted:#8DA6BA;--accent:#8FD9FF;--danger:#F2A65A;color-scheme:dark}
+@media (prefers-color-scheme: light){:root:not([data-theme='dark']){--bg:#F3F8FB;--panel:#FFFFFF;--line:#D3E2EC;--fg:#0B1620;--muted:#4D6374;--accent:#1B74A8;--danger:#A65E12;color-scheme:light}}
+:root[data-theme='light']{--bg:#F3F8FB;--panel:#FFFFFF;--line:#D3E2EC;--fg:#0B1620;--muted:#4D6374;--accent:#1B74A8;--danger:#A65E12;color-scheme:light}
+body{margin:0;min-height:100%;background:var(--bg);color:var(--fg);font-family:"IBM Plex Sans",system-ui,sans-serif;font-size:15px;line-height:1.5}
+.page{min-height:900px;display:flex;align-items:center;justify-content:center;padding:40px max(16px,env(safe-area-inset-left,0px)) 40px max(16px,env(safe-area-inset-right,0px))}
+.card{width:100%;max-width:400px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:36px 32px;display:flex;flex-direction:column;gap:6px;box-sizing:border-box}
+.brand{font-family:"Fraunces",Georgia,serif;font-weight:700;font-size:26px;margin:0}
+.sub{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin:0 0 20px}
+label{font-size:13px;color:var(--muted);margin-top:14px}
+input{width:100%;box-sizing:border-box;background:var(--bg);color:var(--fg);border:1px solid var(--line);border-radius:6px;padding:11px 12px;font:inherit;margin-top:6px}
+.pw{position:relative}
+.pw input{padding-right:84px}
+.pw button{position:absolute;right:6px;top:50%;transform:translateY(-50%);margin-top:3px;background:transparent;border:0;color:var(--accent);font:inherit;font-size:13px;cursor:pointer;padding:6px 8px}
+.err{margin-top:14px;font-size:14px;color:var(--danger);border:1px solid var(--danger);border-radius:6px;padding:10px 12px}
+.submit{margin-top:22px;background:var(--accent);color:var(--bg);border:0;border-radius:6px;padding:12px;font:inherit;font-weight:600;cursor:pointer}
+.links{margin-top:18px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:13px;color:var(--muted)}
+.links a{color:var(--accent);text-decoration:none}
+.note{margin-top:20px;font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--muted)}
+button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+</helmet>
+<main class="page">
+  <form class="card" onsubmit="event.preventDefault()" aria-labelledby="login-title">
+    <h1 class="brand" id="login-title">Breach Log</h1>
+    <p class="sub">Admin login</p>
+
+    <label for="l-user">Username</label>
+    <input id="l-user" name="username" type="text" autocomplete="username" placeholder="Username">
+
+    <label for="l-pass">Password</label>
+    <div class="pw">
+      <input id="l-pass" name="password" type="password" autocomplete="current-password" placeholder="Password">
+      <button type="button" aria-label="Show password">Show</button>
+    </div>
+
+    <p class="err" role="alert">Incorrect username or password. Please try again.</p>
+
+    <button class="submit" type="submit">Login</button>
+
+    <div class="links">
+      <label style="margin:0;display:flex;gap:6px;align-items:center"><input type="checkbox" style="width:auto;margin:0"> Remember this device</label>
+      <a href="#">Back to site</a>
+    </div>
+    <p class="note">After 5 failed attempts, the account is locked for 15 minutes.</p>
+  </form>
+</main>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":900}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>
