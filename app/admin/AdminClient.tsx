@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import type { Post } from '@/lib/content';
+import SecurityPanel from "@/components/SecurityPanel";
+import type { BlockedRow, LogRow } from "@/lib/security";
 
 const SETTING_FIELDS: { key: string; label: string; multiline?: boolean }[] = [
   { key: 'logo_text', label: 'Logo text' },
@@ -13,11 +15,12 @@ const SETTING_FIELDS: { key: string; label: string; multiline?: boolean }[] = [
   { key: 'github_url', label: 'GitHub URL' },
   { key: 'linkedin_url', label: 'LinkedIn URL' },
   { key: 'email', label: 'Email' },
+  { key: "skills", label: "Skills (comma separated)", multiline: true },
 ];
 
 const EMPTY = { id: 0, title: "", category: "CTF write-up", cover_url: "", video_url: "", body: "", status: 'draft' as 'draft' | 'published', featured: false };
 
-export default function AdminClient({ posts, settings }: { posts: Post[]; settings: Record<string, string> }) {
+export default function AdminClient({ posts, settings, security }: { posts: Post[]; settings: Record<string, string>; security: { stats: { visits: number; failed: number }; blocked: BlockedRow[]; logs: LogRow[] } }) {
   const router = useRouter();
   const [form, setForm] = useState({ ...EMPTY });
   const [editing, setEditing] = useState(false);
@@ -102,6 +105,7 @@ export default function AdminClient({ posts, settings }: { posts: Post[]; settin
         <a href="#posts" style={{ fontFamily: 'Fraunces, Georgia, serif', fontWeight: 700, fontSize: 20, color: 'var(--fg)', padding: '0 10px 20px' }}>Breach Log</a>
         <a href="#posts">Posts</a>
         <a href="#settings">Site settings</a>
+        <a href="/admin/security">Security log</a>
         <span style={{ flex: 1 }} />
         <a href="/">View site</a>
         <button type="button" className="btn" onClick={logout} style={{ marginTop: 12 }}>Log out</button>
@@ -186,6 +190,8 @@ export default function AdminClient({ posts, settings }: { posts: Post[]; settin
             </div>
           </div>
         </section>
+
+        <SecurityPanel stats={security.stats} blocked={security.blocked} logs={security.logs} />
 
         <section id="settings" aria-labelledby="settings-title">
           <h2 id="settings-title" style={{ fontSize: 22 }}>Site settings</h2>
